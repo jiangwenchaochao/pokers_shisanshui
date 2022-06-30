@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<div style="width:100%;margin:auto;margin-top: 200px;display:flex;flex-direction:column">
+    <div style="display: flex;color: green;height: 50px;margin-bottom: 30px;">
+        <button id="fapai">
+          <!-- <button onclick="num()"> -->
+            发牌
+        </button>
+    </div>
+
+    <div>
+        <div>每家牌详情</div>
+        <div id="res"></div>
+    </div>
+    <div>
+        
+    </div>
+
+  </div>
+
+  <script type="module" src="./gametest.js"></script>
+  <!-- <script type="text/javascript" src="./test.js"></script> -->
+  <script type="module" >
+    import Thirteen from './gametest.js'
+    var Thirt= new Thirteen();
+    function start(){
+      var pokers = getPorker()
+      //入参格式（牌堆，色牌，切牌，打色序号，庄家编号，扩展JSON）
+      let str = Thirt.start(pokers,1,4)
+      // document.getElementById('res').innerText=(str.toString());
+    }
+    document.getElementById('fapai').onclick = e => {
+      start();
+    }
+   
+  var playerNum = 4;
+  function randomsort(a, b) {
+
+    return Math.random()-0.5;
+
+    //用Math.random()函数生成0~1之间的随机数-0.5 ,正数顺序+1，负数顺序-1
+
+    }
+
+  function getPorker(){
+
+    var poker = []; //打乱后的扑克牌
+
+    var orgPoker = []; //原始有序的扑克牌
+
+    var num = ['2','3','4','5','6','7','8','9','10','J','Q','K','A'];
+
+    var color = ["黑桃-","红桃-","梅花-","方片-"];
+
+    //生成有序的扑克牌
+
+    for (var i = 0; i < num.length; i++) {
+
+      for (var j = 0; j < color.length; j++) {
+
+        orgPoker.push(color[j]+num[i] );
+
+      }
+
+    }
+    //将有序的扑克牌打乱，生成新的无序的扑克牌
+    poker = orgPoker.sort(randomsort);
+    //返回被打乱的扑克牌
+    return poker;
+  }
+
+
+  </script>
+
+</body>
+
+</html>
